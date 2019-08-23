@@ -29,6 +29,10 @@ def css_api(css):
 def js_api(js):
     return send_file('templates/assets/js/{}'.format(js))
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 from app.resources.search import Search
 
 api.add_resource(Search, '/api/search')
