@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head style="overflow-y: hidden">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+  <link rel="stylesheet" href="assets/css/equinox.css">
+  <script src="assets/js/granim.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  </head>
+  <body>
+  <div id="gradient">
+    <div class="center-screen">
+      <div class="card" style="background-color: white">
+          <div class="card-body">
+          <h2 class="card-title">WebDoI.io</h2>
+          <h5 class="subtitle">Easily find programming solutions!</h2>
+          <hr>
+          <h4 class="card-title">Enter Your Query</h4>
+          <form action="/api/search" method="post">
+            <div class="form-group">
+              <input class="form-control" type="text" placeholder="print python trace back error" value="{{query}}" name="q" style="text-align: center" required/>
+              <br>
+              <input type="submit" style="display: none" />
+            </div>
+            <code>
+{{output}}
+            </code>
+          </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
