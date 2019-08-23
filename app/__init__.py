@@ -1,13 +1,25 @@
-from flask import Flask, jsonify, render_template, send_file
-from flask_restful import Api
+from flask import Flask, jsonify, render_template, send_file, make_response
+from flask_restful import Api, reqparse
 from app.utils.helpers import api_response
 from app.utils.search import get_output
 app = Flask(__name__)
 api = Api(app)
 
-@app.route('/api')
+def search_parser():
+    parser = reqparse.RequestParser()
+    parser.add_argument('query')
+    return parser
+
+@app.route('/')
 def index():
-    return api_response('WebDoI API Root', 200)
+    parser = search_parser()
+    args = parser.parse_args()
+    if args.get('query'):
+        output = get_output(args['query'])
+        headers = {'Content-Type': 'text/html'}
+        return make_response(render_template('result.html', output=str(output), query=str(args['query'])), 200, headers)
+    else:
+        return render_template('index.html')
 
 @app.route('/')
 def home():
@@ -32,7 +44,3 @@ def js_api(js):
 @app.route('/about')
 def about():
     return render_template('about.html')
-
-from app.resources.search import Search
-
-api.add_resource(Search, '/api/search')
