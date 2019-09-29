@@ -20,5 +20,5 @@ class SearchAPI(Resource):
             query += ' ' + '-a'
         if args['l']:
             query += ' ' + '-l'
-        output = get_output(args['q'])
+        output = get_output(query)
         return { 'answer': output }, 200
