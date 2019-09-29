@@ -36,10 +36,6 @@ def index():
             json_in.close()
         return render_template('index.html', count=count)
 
-@app.route('/')
-def home():
-    return render_template('index.html')
-
 @app.route('/assets/css/<css>')
 def css(css):
     return send_file('templates/assets/css/{}'.format(css))
@@ -59,3 +55,7 @@ def js_api(js):
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+from app.api_search import  SearchAPI
+
+api.add_resource(SearchAPI, '/api/search')
